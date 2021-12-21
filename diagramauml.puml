@@ -1,0 +1,42 @@
+@startuml
+class Larga {
+- tieneSelloRenar: boolean
+- descripcion: String
+- nivelDelArma: int
++ Larga(Policia,int,int,String,int,String,String,int): <<Create>>
++ TieneSelloRenar(): boolean
++ + compareTo(o : Object) : int
+}
+class Policia {
+- nombre: String
+- apellido: String
+- legajo: String
++ Policia(String,String,String): <<Create>>
+}
+class Corta {
+- LIMITE_LARGO_CORTO_ALCANCE: {static} int
+- esAutomatica: boolean
++ Corta(Policia,int,int,String,int,String,boolean): <<Create>>
++ isLargoAlcance(): String
+}
+abstract class Arma {
+- policia: Policia
+- cantidadMuniciones: int
+- alcanceAproximadoMetros: int
+- marca: String
+- calibre: int
+- estado: String
++ Arma(Policia,int,int,String,int,String): <<Create>>
++ getAlcanceAproximadoMetros(): int
++ estaEnCondiciones(): boolean
+}
+
+interface Comparable {
+    + {abstract} compareTo(o : Object) : int
+}
+
+Arma o-left-Policia
+Comparable <|.. Larga
+Arma <|-- Larga
+Arma <|-- Corta
+@enduml
